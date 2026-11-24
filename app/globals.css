@@ -1,0 +1,134 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy-950: #030b1f;
+  --color-navy-900: #061633;
+  --color-navy-800: #0a2a5e;
+  --color-navy-700: #123a7c;
+  --color-volt: #ffc20e;
+  --color-volt-soft: #ffe08a;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Semantic theme tokens — light is the default, `.dark` on <html> switches. */
+:root {
+  --bg: #f5f7fb;
+  --fg: #0a1b3d;
+  --surface: #ffffff;
+  --surface-2: #e9eff9;
+  --glow: #c9d9f6;
+  --accent: #9a6a00;
+  --gradient: linear-gradient(90deg, #9a6a00, #e0a000, #9a6a00);
+  --gradient-glow: drop-shadow(0 0 18px rgb(255 194 14 / 0.25));
+  color-scheme: light;
+}
+.dark {
+  --bg: #030b1f;
+  --fg: #ffffff;
+  --surface: #061633;
+  --surface-2: #0a2a5e;
+  --glow: #123a7c;
+  --accent: #ffc20e;
+  --gradient: linear-gradient(90deg, #ffc20e, #fff3c4, #ffc20e);
+  --gradient-glow: drop-shadow(0 0 24px rgb(255 194 14 / 0.35));
+  color-scheme: dark;
+}
+
+@theme inline {
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-montserrat);
+  --color-bg: var(--bg);
+  --color-fg: var(--fg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-glow: var(--glow);
+  --color-accent: var(--accent);
+}
+
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--fg); transition: background-color 0.4s, color 0.4s; }
+::selection { background: var(--color-volt); color: var(--color-navy-900); }
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.eyebrow::before {
+  content: "";
+  width: 1.75rem;
+  height: 2px;
+  background: var(--color-volt);
+  box-shadow: 0 0 10px var(--color-volt);
+}
+
+.text-volt-gradient {
+  background: var(--gradient);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shine 4s linear infinite;
+  filter: var(--gradient-glow);
+}
+@keyframes shine { to { background-position: 200% 0; } }
+
+.grid-bg {
+  background-image:
+    linear-gradient(color-mix(in oklab, var(--fg) 5%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, var(--fg) 5%, transparent) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+}
+
+.pulse-line {
+  stroke-dasharray: 6 94;
+  stroke-dashoffset: 100;
+  animation: pulse 4.5s linear infinite;
+  filter: drop-shadow(0 0 6px #ffc20e);
+}
+@keyframes pulse { to { stroke-dashoffset: 0; } }
+
+.glow {
+  filter: drop-shadow(0 0 18px rgb(255 194 14 / 0.7)) drop-shadow(0 0 48px rgb(255 194 14 / 0.4));
+}
+
+.flicker { animation: flicker 6s infinite; }
+@keyframes flicker {
+  0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
+  20%, 24%, 55% { opacity: 0.45; }
+}
+
+.blob { animation: float 14s ease-in-out infinite; }
+.blob-2 { animation-delay: -5s; }
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(60px, -40px) scale(1.1); }
+  66% { transform: translate(-40px, 30px) scale(0.95); }
+}
+
+.field {
+  margin-top: 0.5rem;
+  width: 100%;
+  border-radius: 1rem;
+  border: 1px solid color-mix(in oklab, var(--fg) 12%, transparent);
+  background: color-mix(in oklab, var(--fg) 4%, transparent);
+  padding: 0.9rem 1rem;
+  color: var(--fg);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.field:focus {
+  border-color: rgb(255 194 14 / 0.7);
+  box-shadow: 0 0 0 4px rgb(255 194 14 / 0.15);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; scroll-behavior: auto !important; }
+}
