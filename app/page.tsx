@@ -9,10 +9,12 @@ import WhyUs from "@/components/WhyUs";
 import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import JsonLd from "@/components/JsonLd";
 
 export default function Home() {
   return (
     <MotionProvider>
+      <JsonLd />
       <Navbar />
       <main>
         <Hero />
