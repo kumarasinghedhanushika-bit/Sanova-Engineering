@@ -9,6 +9,9 @@ const montserrat = Montserrat({ subsets: ["latin"], weight: ["600", "700", "800"
 export const metadata: Metadata = {
   title: `${site.name} — ${site.tagline}`,
   description: site.description,
+   verification: {
+    google: "JCW-pfBr6MkyDIgwvMvkxxYa9cTk5It9P6N6AvzF0nU",
+  },
 };
 
 export const viewport: Viewport = { themeColor: "#f5f7fb" };
@@ -20,7 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${inter.variable} ${montserrat.variable}`} suppressHydrationWarning>
       <head>
-        <meta name="google-site-verification" content="JCW-pfBr6MkyDIgwvMvkxxYa9cTk5It9P6N6AvzF0nU" />
+        
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body className="font-sans antialiased overflow-x-clip">{children}</body>
