@@ -20,6 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${inter.variable} ${montserrat.variable}`} suppressHydrationWarning>
       <head>
+        <meta name="google-site-verification" content="JCW-pfBr6MkyDIgwvMvkxxYa9cTk5It9P6N6AvzF0nU" />
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body className="font-sans antialiased overflow-x-clip">{children}</body>
